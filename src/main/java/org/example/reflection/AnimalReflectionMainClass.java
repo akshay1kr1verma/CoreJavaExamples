@@ -21,16 +21,21 @@ public class AnimalReflectionMainClass {
         try {
             Method run = animalReflectionExampleClass.getMethod("run", boolean.class, int.class,
                     String.class);
-            AnimalReflectionExample animalReflectionExample = animalReflectionExampleClass.newInstance();
+            Constructor<AnimalReflectionExample> constructor = animalReflectionExampleClass.getConstructor(String.class, boolean.class);
+            AnimalReflectionExample animalReflectionExample = constructor.newInstance("lhasa", true);
+            System.out.println("breed : " + animalReflectionExample.getBreed() + " can swim : " + animalReflectionExample.isCanSwim());
             run.invoke(animalReflectionExample, true, 1, "akshay");
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
 
         try {
-            Constructor<AnimalReflectionExample> aanimalReflectionExample =
+            Constructor<AnimalReflectionExample> animalReflectionConstructorExample =
                     animalReflectionExampleClass.getDeclaredConstructor();
-        } catch (NoSuchMethodException e) {
+            animalReflectionConstructorExample.setAccessible(true);
+            AnimalReflectionExample animalReflectionExample = animalReflectionConstructorExample.newInstance();
+            System.out.println("breed : " + animalReflectionExample.getBreed()+ " can swim : " + animalReflectionExample.isCanSwim());
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 

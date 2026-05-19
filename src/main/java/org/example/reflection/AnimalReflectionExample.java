@@ -25,7 +25,7 @@ public class AnimalReflectionExample {
         this.canSwim = canSwim;
     }
 
-    public AnimalReflectionExample(){
+    private AnimalReflectionExample(){
 
     }
 
