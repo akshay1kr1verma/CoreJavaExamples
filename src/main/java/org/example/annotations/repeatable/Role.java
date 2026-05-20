@@ -1,4 +1,4 @@
-package org.example.annotations;
+package org.example.annotations.repeatable;
 
 import java.lang.annotation.*;
 
