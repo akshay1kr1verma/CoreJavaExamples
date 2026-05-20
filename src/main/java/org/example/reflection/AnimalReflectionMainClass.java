@@ -3,7 +3,7 @@ package org.example.reflection;
 import java.lang.reflect.*;
 
 public class AnimalReflectionMainClass {
-    public static void main(String [] args) {
+    public static void main(String [] args) throws IllegalAccessException {
         Class<AnimalReflectionExample> animalReflectionExampleClass = AnimalReflectionExample.class;
         //Declared Fields
         for (Field declaredField : animalReflectionExampleClass.getDeclaredFields()) {
@@ -25,6 +25,14 @@ public class AnimalReflectionMainClass {
             AnimalReflectionExample animalReflectionExample = constructor.newInstance("lhasa", true);
             System.out.println("breed : " + animalReflectionExample.getBreed() + " can swim : " + animalReflectionExample.isCanSwim());
             run.invoke(animalReflectionExample, true, 1, "akshay");
+            try {
+                Field breed = animalReflectionExample.getClass().getDeclaredField("breed");
+                breed.setAccessible(true);
+                breed.set(animalReflectionExample, "labrador");
+                System.out.println("breed value :: " + animalReflectionExample.getBreed());
+            } catch (NoSuchFieldException e) {
+                throw new RuntimeException(e);
+            }
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
