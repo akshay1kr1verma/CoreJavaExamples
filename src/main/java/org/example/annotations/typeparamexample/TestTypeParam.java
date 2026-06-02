@@ -11,6 +11,7 @@ public class TestTypeParam {
                System.out.println("myTypeParam :: " + myTypeParam.value());
                System.out.println("typeParameter :: " + typeParameter.getName());
            }
+           System.out.println(" ********** ");
        }
 
     }

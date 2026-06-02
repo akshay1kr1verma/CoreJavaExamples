@@ -5,6 +5,7 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
 
@@ -35,6 +36,10 @@ public class JavaLambdaExpression {
         sum.add(20);
         sum.add(20);
         List<Integer> sumDoubled = sum.stream().map(a -> a * a).toList();
+
+        Stream.iterate(1000, i -> i+1000).limit(5).forEach(integer -> {
+            System.out.println("Integer :: " + integer);
+        });
 
         System.out.println(sum.stream().collect(toUnmodifiableSet()));
         System.out.println();
