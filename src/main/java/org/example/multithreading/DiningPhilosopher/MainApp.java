@@ -17,7 +17,9 @@ public class MainApp {
         {
             Object leftChopstick = chopsticks[i];
             Object rightChopstick = chopsticks[(i + 1) % NBR_OF_PHILOSOPHERS];
-
+            // Deadlock Prevention: The last philosopher picks up the right chopstick first Deadlock:
+            // If every philosopher picks up their left chopstick at the exact same time,
+            // all right chopsticks are held by neighbors. Every thread waits forever, halting program progress.
             philosophers[i] = i == NBR_OF_PHILOSOPHERS - 1 ?
                     new Philosopher(rightChopstick, leftChopstick, i + 1) :
                     new Philosopher(leftChopstick, rightChopstick, i + 1);

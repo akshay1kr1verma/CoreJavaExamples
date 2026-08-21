@@ -35,6 +35,31 @@ public class JavaLambdaExpression {
         sum.add(20);
         sum.add(20);
         sum.add(20);
+        ListIterator<Integer> listIterator = sum.listIterator();
+        while (listIterator.hasNext()) {
+            int val = listIterator.next();
+
+            if (val == 18) {
+                listIterator.add(100);
+            }
+        }
+
+
+        sum.forEach(System.out::println);
+
+        System.out.println("   ");
+        while (listIterator.hasPrevious()) {
+            int val = listIterator.previous();
+
+            if (val == 17) {
+                listIterator.add(500);
+            }
+        }
+
+        sum.forEach(System.out::println);
+
+
+
         List<Integer> sumDoubled = sum.stream().map(a -> a * a).toList();
 
         Stream.iterate(1000, i -> i+1000).limit(5).forEach(integer -> {
@@ -115,6 +140,11 @@ public class JavaLambdaExpression {
         List<String> listWithDuplicates = Arrays.asList("a", "bb", "c", "d", "bb");
         Set<String> result4 = listWithDuplicates.stream().collect(toSet());
         System.out.println(result4);
+
+        ArrayDeque<Integer> test = new ArrayDeque();
+        test.addLast(1);test.addLast(5);test.addLast(10);
+        System.out.println(test);
+        System.out.println(test.removeFirst());
     }
 
     int calculateSum(int a, int b) {
